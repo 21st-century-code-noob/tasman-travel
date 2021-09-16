@@ -1,15 +1,32 @@
 .navbar-container{
+    position: sticky;
+    top: 0;
+    padding: 1.5rem 4rem;
+    background: none;
     display: flex;
     justify-content:space-between;
     align-items: center;
+    z-index: 2;
 
-    padding: 1.5rem 4rem;
+    .background{
+        display: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+    }
 
     .navbar-logo{
         height: 5rem;
         width: auto;
         object-fit: contain;
     }
+
+    .navbar-menu-icon{
+        display: none;
+    }
+
     .navbar-menu{
         list-style-type: none;
         .navbar-menu-item{
@@ -21,4 +38,56 @@
             }
         }
     }
+}
+
+@media screen and (max-width: 800px) {
+    .navbar-container{
+        justify-content: center;
+        background: white;
+        z-index: 99;
+        .background{
+            display: block;
+            z-index: 3;
+        }
+        .navbar-logo{
+            height: 4rem;
+            width: auto;
+            object-fit: contain;
+            z-index: 4;
+        }
+
+        .navbar-menu-icon{
+            display: inline;
+            position: absolute;
+            right: 2rem;
+            z-index: 4;
+        }
+
+        .navbar-menu{
+            position: absolute;
+            top: -18rem;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            z-index: 2;
+
+            transition: all 0.5s ease;
+
+            .navbar-menu-item{
+                .nav-links{
+                    color: black;
+                    width: 100vw;
+                    height: 3.5rem;
+                }
+            }
+        }
+        .navbar-menu.active{
+            top: 6rem;
+            width: 100%;
+            z-index: 2;
+        }
+    }
+    
 }

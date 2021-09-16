@@ -1,19 +1,32 @@
-import logoImage from 'assets/images/logo.png';
-import { NavbarItems } from './NavbarItems';
-import Button from '@material-ui/core/Button';
-import './Navbar.scss'
 import { useState } from 'react';
+import { NavbarItems } from './NavbarItems';
 
-const [menuExpanded, setMenuExpanded] = useState(false);
+import './Navbar.scss'
 
-const Navbar = () => {1
+import logoImage from 'assets/images/logo.png';
+
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
+import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
+import Button from '@material-ui/core/Button';
+
+
+const Navbar = () => {
+
+    const [menuClicked, setMenuClicked] = useState(false);
+
+    const handleMenuIconClick = () => {
+        setMenuClicked(!menuClicked);
+        console.log(menuClicked);
+    }
+
     return (
         <div className="navbar-container">
-                <img src={logoImage} alt="Tasman Logo" className="navbar-logo" />
-            <div className="menu-icon">
-
+            <img src={logoImage} className="navbar-logo" alt="Tasman Logo" />
+            <div className="background"/>
+            <div className="navbar-menu-icon" onClick={handleMenuIconClick}>
+                {menuClicked ? <CloseRoundedIcon /> : <MenuRoundedIcon />}
             </div>
-            <ul className="navbar-menu">
+            <ul className= { menuClicked ? 'navbar-menu active' : 'navbar-menu'}>
                 {NavbarItems.map((item, index) => {
                     return (
                         <li className="navbar-menu-item" key = {index}>
@@ -27,5 +40,7 @@ const Navbar = () => {1
         </div>
     );
 }
+
+
 
 export default Navbar;
